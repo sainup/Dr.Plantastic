@@ -1,0 +1,93 @@
+{
+    "Pepper__bell___Bacterial_spot": {
+      "name": "Pepper Bacterial Spot",
+      "symptoms": "Small, water-soaked spots on leaves and fruit that turn dark brown.",
+      "treatment": "Use copper-based bactericides and remove infected plants.",
+      "prevention": "Use disease-free seeds and improve air circulation around plants."
+    },
+    "Pepper__bell___healthy": {
+      "name": "Healthy Bell Pepper",
+      "symptoms": "No visible symptoms. Leaves and fruit appear healthy.",
+      "treatment": "None needed.",
+      "prevention": "Continue providing optimal growing conditions."
+    },
+    "Potato___Early_blight": {
+      "name": "Potato Early Blight",
+      "symptoms": "Dark spots on leaves with concentric rings, leading to defoliation.",
+      "treatment": "Apply fungicides like azoxystrobin or chlorothalonil.",
+      "prevention": "Ensure adequate spacing, remove infected debris, and rotate crops."
+    },
+    "Potato___Late_blight": {
+      "name": "Potato Late Blight",
+      "symptoms": "Grayish-brown lesions on leaves and stems, often with white mold.",
+      "treatment": "Use fungicides containing copper or metalaxyl.",
+      "prevention": "Plant resistant varieties, avoid overhead watering, and rotate crops."
+    },
+    "Potato___healthy": {
+      "name": "Healthy Potato",
+      "symptoms": "No visible symptoms. Leaves and stems appear healthy.",
+      "treatment": "None needed.",
+      "prevention": "Ensure good soil conditions and regular care."
+    },
+    "Tomato_Bacterial_spot": {
+      "name": "Tomato Bacterial Spot",
+      "symptoms": "Water-soaked spots on leaves that turn brown and scab over.",
+      "treatment": "Apply copper-based bactericides promptly.",
+      "prevention": "Use disease-free seeds and rotate crops."
+    },
+    "Tomato_Early_blight": {
+      "name": "Tomato Early Blight",
+      "symptoms": "Brown spots with concentric rings on lower leaves, causing defoliation.",
+      "treatment": "Use fungicides like mancozeb or chlorothalonil.",
+      "prevention": "Remove infected debris and avoid overhead watering."
+    },
+    "Tomato_Late_blight": {
+      "name": "Tomato Late Blight",
+      "symptoms": "Water-soaked spots on leaves that enlarge, turn brown, and appear oily.",
+      "treatment": "Apply fungicides containing copper or chlorothalonil promptly.",
+      "prevention": "Rotate crops, avoid overhead watering, and ensure proper spacing for air circulation."
+    },
+    "Tomato_Leaf_Mold": {
+      "name": "Tomato Leaf Mold",
+      "symptoms": "Yellow spots on leaves, accompanied by a velvety mold underneath.",
+      "treatment": "Remove infected leaves and apply fungicides containing mancozeb.",
+      "prevention": "Maintain low humidity, improve ventilation, and space plants adequately."
+    },
+    "Tomato_Septoria_leaf_spot": {
+      "name": "Tomato Septoria Leaf Spot",
+      "symptoms": "Circular spots with dark edges on lower leaves, causing defoliation.",
+      "treatment": "Use fungicides such as chlorothalonil and remove affected leaves.",
+      "prevention": "Avoid wetting leaves, rotate crops, and remove plant debris."
+    },
+    "Tomato_Spider_mites_Two_spotted_spider_mite": {
+      "name": "Tomato Spider Mites (Two-Spotted)",
+      "symptoms": "Yellow or bronzed leaves with fine webbing.",
+      "treatment": "Use insecticidal soap or neem oil to control mites.",
+      "prevention": "Encourage natural predators like ladybugs and avoid over-fertilization."
+    },
+    "Tomato__Target_Spot": {
+      "name": "Tomato Target Spot",
+      "symptoms": "Small, water-soaked spots on leaves that expand with concentric rings.",
+      "treatment": "Apply fungicides like chlorothalonil or copper-based sprays.",
+      "prevention": "Avoid wetting leaves and improve ventilation around plants."
+    },
+    "Tomato__Tomato_YellowLeaf__Curl_Virus": {
+      "name": "Tomato Yellow Leaf Curl Virus",
+      "symptoms": "Yellowing and curling of leaves, stunted growth, and reduced fruit production.",
+      "treatment": "Remove infected plants and control whiteflies with insecticides.",
+      "prevention": "Use resistant varieties and reflective mulch to deter whiteflies."
+    },
+    "Tomato__Tomato_mosaic_virus": {
+      "name": "Tomato Mosaic Virus",
+      "symptoms": "Mottled yellow and green leaves with distorted shapes.",
+      "treatment": "Remove infected plants and sanitize tools.",
+      "prevention": "Use resistant varieties and avoid handling plants when wet."
+    },
+    "Tomato_healthy": {
+      "name": "Healthy Tomato",
+      "symptoms": "No visible symptoms. Leaves and fruit appear healthy.",
+      "treatment": "None needed.",
+      "prevention": "Continue providing optimal growing conditions."
+    }
+  }
+  
