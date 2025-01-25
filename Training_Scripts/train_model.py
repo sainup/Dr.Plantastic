@@ -7,7 +7,6 @@ from sklearn.metrics import precision_score, recall_score, f1_score, confusion_m
 from torchvision.datasets import DatasetFolder, ImageFolder
 import matplotlib.pyplot as plt
 
-# Define valid image extensions explicitly
 VALID_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG'}
 
 # Constants
@@ -28,13 +27,6 @@ class CustomImageFolder(ImageFolder):
         return os.path.splitext(file_path)[1] in VALID_EXTENSIONS
 
 
-# Log all valid files for debugging
-print("Logging all valid image files in dataset...")
-for root, _, files in os.walk(DATASET_DIR):
-    for file in files:
-        if os.path.splitext(file)[1] in VALID_EXTENSIONS:
-            print(f"Found valid file: {os.path.join(root, file)}")
-
 # Check for GPU availability
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
@@ -46,7 +38,7 @@ transform = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])  # Normalize for ImageNet models
 ])
 
-# Log class distribution
+
 def log_class_distribution(dataset):
     class_counts = {class_name: 0 for class_name in dataset.classes}
     for _, label in dataset.samples:
@@ -57,12 +49,12 @@ def log_class_distribution(dataset):
     for class_name, count in class_counts.items():
         print(f"{class_name}: {count}")
 
-    # Save the class distribution to the log file
+    
     with open(LOG_FILE, "w") as f:
         f.write("Class distribution:\n")
         for class_name, count in class_counts.items():
             f.write(f"{class_name}: {count}\n")
-        f.write("\n")  # Add a newline for better formatting
+        f.write("\n") 
 
 # Load dataset
 print("Loading dataset...")
@@ -79,10 +71,10 @@ val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=BATCH_SIZE, shu
 # Load pre-trained MobileNetV2
 print("Loading pre-trained model...")
 model = models.mobilenet_v2(pretrained=True)
-model.classifier[1] = nn.Linear(model.last_channel, len(dataset.classes))  # Adjust output layer for the number of classes
+model.classifier[1] = nn.Linear(model.last_channel, len(dataset.classes))  
 model = model.to(device)
 
-# Define loss function and optimizer
+
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
@@ -95,15 +87,13 @@ def validate_model(model, val_loader, criterion, device):
     all_labels = []
     all_predictions = []
 
-    with torch.no_grad():  # No gradients needed during validation
+    with torch.no_grad():  
         for images, labels in val_loader:
             images, labels = images.to(device), labels.to(device)
 
-            # Forward pass
             outputs = model(images)
             loss = criterion(outputs, labels)
 
-            # Update metrics
             val_loss += loss.item()
             _, predicted = outputs.max(1)
             total += labels.size(0)
@@ -143,18 +133,18 @@ for epoch in range(EPOCHS):
     for images, labels in train_loader:
         images, labels = images.to(device), labels.to(device)
 
-        # Zero the parameter gradients
+        
         optimizer.zero_grad()
 
-        # Forward pass
+       
         outputs = model(images)
         loss = criterion(outputs, labels)
 
-        # Backward pass and optimize
+      
         loss.backward()
         optimizer.step()
 
-        # Update metrics
+       
         running_loss += loss.item()
         _, predicted = outputs.max(1)
         total += labels.size(0)

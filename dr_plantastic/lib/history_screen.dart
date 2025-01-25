@@ -42,7 +42,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
     }
   }
 
-
   // Fetch prediction history from SQLite database
   Future<void> _fetchHistory() async {
     try {
@@ -65,7 +64,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
   // Apply search and sort filters
   void _applyFilters() {
     setState(() {
-      // Filter by search query
       _filteredHistory = _historyList.where((record) {
         final query = _searchController.text.toLowerCase();
         return record['prediction'].toLowerCase().contains(query);

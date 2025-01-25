@@ -7,9 +7,8 @@ import 'package:sqflite/sqflite.dart';
 import 'history_screen.dart';
 import 'disease_detail_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:convert'; // Import for decoding JSON
+import 'dart:convert';
 import 'dart:typed_data';
-
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,9 +38,9 @@ class PlantDiseaseHome extends StatefulWidget {
 class _PlantDiseaseHomeState extends State<PlantDiseaseHome> {
   File? _selectedImage;
   String? _prediction;
-  double? _probabilityScore; // Added field for probability score
+  double? _probabilityScore;
   late ClassificationModel _model;
-  Map<String, String> _labelMap = {}; // Label map to map indices to friendly names
+  Map<String, String> _labelMap = {};
 
   @override
   void initState() {
@@ -66,10 +65,12 @@ class _PlantDiseaseHomeState extends State<PlantDiseaseHome> {
 
   Future<void> _loadLabels() async {
     try {
-      String jsonString = await DefaultAssetBundle.of(context).loadString('assets/labels.json');
+      String jsonString =
+          await DefaultAssetBundle.of(context).loadString('assets/labels.json');
       Map<String, dynamic> labels = json.decode(jsonString);
       setState(() {
-        _labelMap = labels.map((key, value) => MapEntry(key.toString(), value.toString()));
+        _labelMap = labels
+            .map((key, value) => MapEntry(key.toString(), value.toString()));
       });
       print("Labels loaded: $_labelMap");
     } catch (e) {
@@ -90,35 +91,36 @@ class _PlantDiseaseHomeState extends State<PlantDiseaseHome> {
   }
 
   Future<void> _predictImage(File image) async {
-  try {
-    // Read the image bytes
-    Uint8List imageBytes = await image.readAsBytes();
+    try {
+      Uint8List imageBytes = await image.readAsBytes();
 
-    // Get the predictions with probabilities
-    List<double>? probabilities = await _model.getImagePredictionListProbabilities(imageBytes);
+      // Get the predictions with probabilities
+      List<double>? probabilities =
+          await _model.getImagePredictionListProbabilities(imageBytes);
 
-    // Get the raw prediction for the label mapping
-    String rawPrediction = await _model.getImagePrediction(imageBytes);
+      // Get the raw prediction for the label mapping
+      String rawPrediction = await _model.getImagePrediction(imageBytes);
 
-    // Extract the label from raw prediction
-    String predictionLabel = rawPrediction.split(": ").last.replaceAll('"', '');
+      // Extract the label from raw prediction
+      String predictionLabel =
+          rawPrediction.split(": ").last.replaceAll('"', '');
 
-    // Extract the top probability (highest confidence)
-    double? topProbability = probabilities != null && probabilities.isNotEmpty
-        ? probabilities[int.parse(rawPrediction.split(":").first.replaceAll(RegExp(r'[^0-9]'), ''))]
-        : null;
+      // Extract the top probability (highest confidence)
+      double? topProbability = probabilities != null && probabilities.isNotEmpty
+          ? probabilities[int.parse(
+              rawPrediction.split(":").first.replaceAll(RegExp(r'[^0-9]'), ''))]
+          : null;
 
-    setState(() {
-      _prediction = predictionLabel; // Update the label
-      _probabilityScore = topProbability; // Update the probability score
-    });
+      setState(() {
+        _prediction = predictionLabel;
+        _probabilityScore = topProbability;
+      });
 
-    // Save the prediction without probability
-    _savePrediction(image.path, _prediction!);
-  } catch (e) {
-    print("Prediction error: $e");
+      _savePrediction(image.path, _prediction!);
+    } catch (e) {
+      print("Prediction error: $e");
+    }
   }
-}
 
   Future<void> _savePrediction(String imagePath, String prediction) async {
     final Directory directory = await getApplicationDocumentsDirectory();
@@ -189,7 +191,8 @@ class _PlantDiseaseHomeState extends State<PlantDiseaseHome> {
             if (_prediction != null)
               Column(
                 children: [
-                  Text("Prediction: $_prediction", style: TextStyle(fontSize: 18)),
+                  Text("Prediction: $_prediction",
+                      style: TextStyle(fontSize: 18)),
                   if (_probabilityScore != null)
                     Text(
                       "Confidence: ${(_probabilityScore! * 100).toStringAsFixed(2)}%",

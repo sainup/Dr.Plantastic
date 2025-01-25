@@ -2,10 +2,10 @@ import os
 import cv2
 import numpy as np
 
-# Constants
+
 DATASET_DIR = "F:/Anup/PJAIT/7th Semester/SUML/Materials/Project Dr. Plantastic/Dataset/PlantVillage"
 BATCH_SIZE = 32  # Number of images to load at a time
-VALID_EXTENSIONS = [".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"]  # Include all extensions
+VALID_EXTENSIONS = [".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"]  
 
 def log_dataset_stats(dataset_dir):
     """Logs the total number of images per class."""
@@ -25,7 +25,7 @@ def log_dataset_stats(dataset_dir):
 # Generator for loading data in batches
 def image_data_generator(dataset_dir, batch_size=BATCH_SIZE):
     """Yields batches of images and labels."""
-    class_names = sorted(os.listdir(dataset_dir))  # Ensure consistent class order
+    class_names = sorted(os.listdir(dataset_dir))  
     image_paths = []
     labels = []
 
@@ -35,7 +35,7 @@ def image_data_generator(dataset_dir, batch_size=BATCH_SIZE):
         if not os.path.isdir(class_dir):
             continue
         for img_name in os.listdir(class_dir):
-            if os.path.splitext(img_name)[1] in VALID_EXTENSIONS:  # Filter valid extensions
+            if os.path.splitext(img_name)[1] in VALID_EXTENSIONS:  
                 image_paths.append(os.path.join(class_dir, img_name))
                 labels.append(label)
 
@@ -47,7 +47,7 @@ def image_data_generator(dataset_dir, batch_size=BATCH_SIZE):
     image_paths = image_paths[indices]
     labels = labels[indices]
 
-    # Yield batches of images and labels
+    
     for start in range(0, len(image_paths), batch_size):
         end = min(start + batch_size, len(image_paths))
         batch_paths = image_paths[start:end]
@@ -56,7 +56,7 @@ def image_data_generator(dataset_dir, batch_size=BATCH_SIZE):
         images = np.array(images) / 255.0  # Normalize to 0-1
         yield np.array(images), np.array(batch_labels), class_names
 
-# Example usage
+
 if __name__ == "__main__":
     print("Logging dataset stats...")
     total_images = log_dataset_stats(DATASET_DIR)

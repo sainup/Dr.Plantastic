@@ -10,7 +10,8 @@ class DiseaseDetailScreen extends StatelessWidget {
   DiseaseDetailScreen({required this.diseaseKey});
 
   Future<Map<String, dynamic>> _loadDiseaseData() async {
-    final String response = await rootBundle.loadString('assets/disease_info.json');
+    final String response =
+        await rootBundle.loadString('assets/disease_info.json');
     return json.decode(response);
   }
 
@@ -39,7 +40,8 @@ class DiseaseDetailScreen extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Center(child: Text("Error loading disease details."));
           } else if (!snapshot.data!.containsKey(diseaseKey)) {
-            return Center(child: Text("No details available for this disease."));
+            return Center(
+                child: Text("No details available for this disease."));
           }
 
           final disease = snapshot.data![diseaseKey];
@@ -53,25 +55,37 @@ class DiseaseDetailScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 20),
-                Text("Symptoms:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text("Symptoms:",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text(disease['symptoms']),
                 TextButton(
-                  onPressed: () => _launchURL("Symptoms for ${disease['name']}"),
-                  child: Text("More about Symptoms", style: TextStyle(color: Colors.blue)),
+                  onPressed: () =>
+                      _launchURL("Symptoms for ${disease['name']}"),
+                  child: Text("More about Symptoms",
+                      style: TextStyle(color: Colors.blue)),
                 ),
                 SizedBox(height: 20),
-                Text("Treatment:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text("Treatment:",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text(disease['treatment']),
                 TextButton(
-                  onPressed: () => _launchURL("Treatment for ${disease['name']}"),
-                  child: Text("More about Treatment", style: TextStyle(color: Colors.blue)),
+                  onPressed: () =>
+                      _launchURL("Treatment for ${disease['name']}"),
+                  child: Text("More about Treatment",
+                      style: TextStyle(color: Colors.blue)),
                 ),
                 SizedBox(height: 20),
-                Text("Prevention:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text("Prevention:",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text(disease['prevention']),
                 TextButton(
-                  onPressed: () => _launchURL("Prevention for ${disease['name']}"),
-                  child: Text("More about Prevention", style: TextStyle(color: Colors.blue)),
+                  onPressed: () =>
+                      _launchURL("Prevention for ${disease['name']}"),
+                  child: Text("More about Prevention",
+                      style: TextStyle(color: Colors.blue)),
                 ),
               ],
             ),
